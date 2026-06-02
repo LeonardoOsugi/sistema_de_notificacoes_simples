@@ -1,0 +1,10 @@
+{
+  "total_processed": 0,
+  "total_sent": 0,
+  "total_failed": 0,
+  "success_rate": 0,
+  "by_type": {},
+  "last_sent_at": null,
+  "last_failed_at": null,
+  "last_error": null
+}

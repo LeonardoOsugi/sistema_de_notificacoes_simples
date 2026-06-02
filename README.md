@@ -78,10 +78,35 @@ Responsável por receber a solicitação de notificação e postá-la na fila do
 
 ---
 
+### `GET /stats` (Relatórios Simples)
+Responsável por retornar o total de notificações processadas, enviadas, com falha e a divisão por tipo.
+
+**Resposta de Sucesso (200 OK):**
+
+```json
+{
+  "total_processed": 152,
+  "total_sent": 150,
+  "total_failed": 2,
+  "success_rate": 98.68,
+  "by_type": {
+    "email": 100,
+    "discord": 50
+  },
+  "last_sent_at": "2026-06-02T15:30:00.000Z",
+  "last_failed_at": "2026-06-02T15:35:00.000Z",
+  "last_error": "Falha ao enviar discord"
+}
+```
+
+Os dados ficam salvos em `data/stats.json`. Quando o Worker finalizar o envio de uma notificação, ele pode chamar `registerSentNotification(type)` do arquivo `src/services/statsService.js`. Se o envio falhar, ele pode chamar `registerFailedNotification(errorMessage)`.
+
+---
+
 ## 👷 Próximos Passos (Para a Equipe)
 A arquitetura do projeto já está definida com a separação em `routes`, `controllers` e `services`. As próximas implementações devem seguir este padrão lógico:
 
 * [ ] **`GET /health`:** Criar rota de monitoramento para verificar a conexão com o RabbitMQ.
-* [ ] **`GET /stats`:** Criar rota de relatórios para ler os envios registrados.
+* [x] **`GET /stats`:** Criar rota de relatórios para ler os envios registrados.
 * [ ] **`POST /config`:** Criar rota de gerenciamento para ligar/desligar tipos de notificação.
 * [ ] **Worker:** Desenvolver o script isolado que irá consumir a fila `notificacoes_fila` e simular o envio.
