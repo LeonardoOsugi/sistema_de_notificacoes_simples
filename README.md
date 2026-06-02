@@ -108,5 +108,5 @@ A arquitetura do projeto já está definida com a separação em `routes`, `cont
 
 * [ ] **`GET /health`:** Criar rota de monitoramento para verificar a conexão com o RabbitMQ.
 * [x] **`GET /stats`:** Criar rota de relatórios para ler os envios registrados.
-* [ ] **`POST /config`:** Criar rota de gerenciamento para ligar/desligar tipos de notificação.
+* [x] **`POST /config`:** Criar rota de gerenciamento para ligar/desligar tipos de notificação.
 * [ ] **Worker:** Desenvolver o script isolado que irá consumir a fila `notificacoes_fila` e simular o envio.
