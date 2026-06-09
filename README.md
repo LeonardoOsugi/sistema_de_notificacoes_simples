@@ -78,6 +78,29 @@ Responsável por receber a solicitação de notificação e postá-la na fila do
 
 ---
 
+### `GET /health` (Monitoramento)
+Responsável por verificar se a API está no ar e se a conexão com o RabbitMQ está ativa.
+
+**Resposta de Sucesso (200 OK):**
+
+```json
+{
+  "status": "ok",
+  "broker_connected": true
+}
+```
+
+**Resposta quando o broker estiver indisponível (503 Service Unavailable):**
+
+```json
+{
+  "status": "degraded",
+  "broker_connected": false
+}
+```
+
+---
+
 ### `GET /stats` (Relatórios Simples)
 Responsável por retornar o total de notificações processadas, enviadas, com falha e a divisão por tipo.
 
@@ -106,7 +129,7 @@ Os dados ficam salvos em `data/stats.json`. Quando o Worker finalizar o envio de
 ## 👷 Próximos Passos (Para a Equipe)
 A arquitetura do projeto já está definida com a separação em `routes`, `controllers` e `services`. As próximas implementações devem seguir este padrão lógico:
 
-* [ ] **`GET /health`:** Criar rota de monitoramento para verificar a conexão com o RabbitMQ.
+* [x] **`GET /health`:** Criar rota de monitoramento para verificar a conexão com o RabbitMQ.
 * [x] **`GET /stats`:** Criar rota de relatórios para ler os envios registrados.
 * [x] **`POST /config`:** Criar rota de gerenciamento para ligar/desligar tipos de notificação.
 * [ ] **Worker:** Desenvolver o script isolado que irá consumir a fila `notificacoes_fila` e simular o envio.
